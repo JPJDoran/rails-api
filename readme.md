@@ -35,8 +35,7 @@ The project is designed to allow experimentation with the basics of Ruby on Rail
    - Rails will automatically wait for Postgres to be ready before connecting.  
 
 8. **Set up the database**  
-   - Use Docker Compose to run Rails database commands inside the container to create and migrate the database.  
-   - This ensures the PostgreSQL database is initialized and ready for your app.
+   - Run Rails database commands inside the container to create and migrate the database. This ensures the PostgreSQL database is initialized and ready for your app.
    - `rails db:create`
    - `rails db:migrate`
 
