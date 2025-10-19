@@ -1,0 +1,54 @@
+# ==============================
+# Rails default ignores
+# ==============================
+
+# Ignore bundler config.
+.bundle
+
+# Ignore all environment files (except templates).
+/.env*
+!/.env*.erb
+
+# Ignore all logfiles and tempfiles.
+ /log/*
+ /tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+ /tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# ==============================
+# Docker / container ignores
+# ==============================
+
+# Ignore Postgres data volume
+pgdata/
+
+# Ignore Docker environment files
+*.env
+
+# ==============================
+# Bundler / Gems
+# ==============================
+
+/vendor/bundle
+
+# ==============================
+# Node / Yarn (if any JS added later)
+# ==============================
+
+/node_modules
+/yarn-error.log
