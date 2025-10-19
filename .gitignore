@@ -10,13 +10,13 @@
 !/.env*.erb
 
 # Ignore all logfiles and tempfiles.
- /log/*
- /tmp/*
+/log/*
+/tmp/*
 !/log/.keep
 !/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
- /tmp/pids/*
+/tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
 
@@ -52,3 +52,4 @@ pgdata/
 
 /node_modules
 /yarn-error.log
+
