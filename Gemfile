@@ -5,7 +5,7 @@ ruby "~> 3.2.0"
 source "https://rubygems.org"
 
 # Rails framework
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 8.0.0"
 
 # PostgreSQL adapter
 gem "pg", "~> 1.5"
