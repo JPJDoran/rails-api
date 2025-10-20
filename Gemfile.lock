@@ -172,6 +172,10 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
+    redis-client (0.26.1)
+      connection_pool
     reline (0.6.2)
       io-console (~> 0.5)
     securerandom (0.4.1)
@@ -197,6 +201,7 @@ DEPENDENCIES
   pg (~> 1.5)
   puma (~> 6.0)
   rails (~> 8.0.0)
+  redis
 
 RUBY VERSION
    ruby 3.2.9p265

@@ -15,3 +15,6 @@ gem "puma", "~> 6.0"
 
 # Required by rails
 gem 'bootsnap', '>= 1.18', require: false
+
+# Redis Cache
+gem "redis"

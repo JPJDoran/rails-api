@@ -1,11 +1,19 @@
 class AuthorsController < ApplicationController
   def index
-    authors = Author.all
-    render json: authors.as_json(only: [:id, :name])
+    # Get authors from cachce based on last updated author (timestamp converted to integer)
+    # set cache if no existing value
+    authors_json = Rails.cache.fetch(["authors", Author.maximum(:updated_at).to_i]) do
+      Author.all.as_json(only: [:id, :name])
+    end
+
+    render json: authors_json
   end
 
   def show
-    author = Author.find(params[:id])
-    render json: author.as_json(only: [:id, :name])
+    author_json = Rails.cache.fetch(["authors", params[:id]], expires_in: 5.minutes) do
+      Author.find(params[:id]).as_json(only: [:id, :name])
+    end
+
+    render json: author_json
   end
 end

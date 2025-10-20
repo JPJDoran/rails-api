@@ -12,6 +12,13 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
   web:
     build: .
     command: rails server -b 0.0.0.0
@@ -21,11 +28,14 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
     environment:
       DATABASE_HOST: db
       DATABASE_USER: rails
       DATABASE_PASSWORD: rails
       DATABASE_NAME: rails_dev
+      REDIS_URL: redis://redis:6379/1
 
 volumes:
   pgdata:
+  redisdata:
