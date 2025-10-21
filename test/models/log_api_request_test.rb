@@ -1,6 +1,6 @@
 require "test_helper"
 
-class LogApiTest < ActiveSupport::TestCase
+class LogApiRequestTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
