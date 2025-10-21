@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -6,4 +8,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :authors
+
+  # Mount Sidekiq Web UI only in development or staging
+  unless Rails.env.production?
+    Sidekiq::Web.use ActionDispatch::Cookies
+    Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: "_sidekiq_session"
+
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

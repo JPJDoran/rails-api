@@ -36,6 +36,21 @@ services:
       DATABASE_NAME: rails_dev
       REDIS_URL: redis://redis:6379/1
 
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: rails
+      DATABASE_PASSWORD: rails
+      DATABASE_NAME: rails_dev
+      REDIS_URL: redis://redis:6379/1
+
 volumes:
   pgdata:
   redisdata:

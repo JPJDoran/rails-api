@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_21_103903) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_21_120113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_21_103903) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "log_apis", force: :cascade do |t|
+    t.string "api_key"
+    t.string "path"
+    t.string "method"
+    t.string "ip"
+    t.integer "timestamp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

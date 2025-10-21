@@ -49,3 +49,8 @@ The project is designed to allow experimentation with the basics of Ruby on Rail
 ---
 
 This README captures the **full Docker Compose workflow**: building the Rails image, running the Rails and Postgres containers together, and connecting them seamlessly for development.
+
+---
+
+** Command References **
+   - `docker-compose run --rm web bundle install` - Install new gems.

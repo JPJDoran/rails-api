@@ -1,0 +1,2 @@
+class LogApiRequest < ApplicationRecord
+end

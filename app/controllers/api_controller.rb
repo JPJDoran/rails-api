@@ -66,20 +66,20 @@ class ApiController < ApplicationController
     # No api key, so return
     return unless @current_api_key
 
-    # Key format: api_count:<token>:YYYYMMDDHHMM
-    key = "api_usage:#{@current_api_key}:#{Time.now.strftime('%Y%m%d%H%M')}"
+    # Key format: api_count:YYYYMMDDHHMM
+    # Time bucket key for flushing logs to db every few mins
+    key = "api_usage:#{Time.now.strftime('%Y%m%d%H%M')}"
 
-    # 
-    entry = {
-        api_key: @current_api_key,
-        path: request.path,
-        method: request.method,
-        timestamp: Time.now.to_i,
-        ip: request.remote_ip
-    }
+    # Payload to be flushed
+    log_entry = {
+      api_key: @current_api_key,
+      path: request.path,
+      method: request.method,
+      ip: request.remote_ip,
+      timestamp: Time.now.to_i
+    }.to_json
 
-    # Read existing entries for this minute, append, and write back
-    existing_entries = Rails.cache.read(key) || []
-    Rails.cache.write(key, existing_entries + [entry], expires_in: 1.hours)
+    # Push log entry to the Redis list
+    REDIS.lpush(key, log_entry)
   end
 end

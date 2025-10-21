@@ -18,3 +18,10 @@ gem 'bootsnap', '>= 1.18', require: false
 
 # Redis Cache
 gem "redis"
+
+# Sidekiq
+gem 'sidekiq', '~> 8.0'
+gem 'sidekiq-cron', '~> 2.3'
+
+# JSON
+gem 'json', '~> 2.15'
