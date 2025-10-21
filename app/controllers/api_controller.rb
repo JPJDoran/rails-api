@@ -44,7 +44,16 @@ class ApiController < ApplicationController
     # Set TTL of 61 seconds on first increment
     Rails.cache.write(key, count, expires_in: 61.seconds)
 
-    if count > 100
+    limit = 100
+    remaining = [limit - count, 0].max
+    reset_in_seconds = 60 - Time.now.sec
+
+    # Set custom headers
+    response.set_header('X-RateLimit-Limit', limit)
+    response.set_header('X-RateLimit-Remaining', remaining)
+    response.set_header('X-RateLimit-Reset', reset_in_seconds)
+
+    if count > limit
         render json: { error: 'Rate limit exceeded' }, status: :too_many_requests
     end
   end
