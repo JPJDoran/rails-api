@@ -52,5 +52,5 @@ This README captures the **full Docker Compose workflow**: building the Rails im
 
 ---
 
-** Command References **
-   - `docker-compose run --rm web bundle install` - Install new gems.
+**Command References**
+   - `docker-compose run --rm web bundle install` - Install new gems in mounted gemfile.lock

@@ -25,3 +25,10 @@ gem 'sidekiq-cron', '~> 2.3'
 
 # JSON
 gem 'json', '~> 2.15'
+
+# For Swagger / OpenAPI docs
+gem 'rswag'
+gem 'rspec-rails', '~> 7.0'
+
+# Allow api-docs to access API
+gem 'rack-cors'

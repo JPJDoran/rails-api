@@ -1,0 +1,94 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-Api-Key
+      in: header
+security:
+- ApiKeyAuth: []
+paths:
+  "/authors":
+    get:
+      summary: List all authors
+      tags:
+      - Authors
+      description: Returns a list of all authors in the system
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: X_Api_Key
+        in: header
+        required: true
+        description: API Key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: authors found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    Not empty:
+                    - id: 1
+                      name: Seishi Yokomizo
+                    - id: 2
+                      name: Yael Van Der Wouden
+                    Empty: []
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: Unique ID of the author
+                    name:
+                      type: string
+                      description: Author full name
+                  required:
+                  - id
+                  - name
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized_example:
+                  value:
+                    error: Unauthorized
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Unauthorized
+                required:
+                - error
+        '429':
+          description: too_many_requests
+          content:
+            application/json:
+              examples:
+                too_many_requests_example:
+                  value:
+                    error: Rate limit exceeded
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Rate limit exceeded
+                required:
+                - error
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
